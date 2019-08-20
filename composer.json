@@ -1,0 +1,15 @@
+{
+    "name": "ackosoft/auth-adapter",
+    "description": "auth adapter for oauth2 passport",
+    "type": "composer-plugin",
+    "require": {
+        "laravel/passport": ">=7.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ackosoft Admin",
+            "email": "admin@ackosoft.com"
+        }
+    ]
+}
