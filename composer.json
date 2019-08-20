@@ -11,5 +11,10 @@
             "name": "Ackosoft Admin",
             "email": "admin@ackosoft.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ackosoft\\AuthAdapter\\": "src/"
+        }
+    }
 }
