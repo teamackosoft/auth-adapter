@@ -30,21 +30,43 @@ return [
             'model' => \App\User::class
         ]
     ],
-    'auth_connection'=>'mysql2'
+    'auth_connection'=>env('AUTH_DB_CONNECTION','mysql')
 ];
 
 ```
-Add service provider into bootstrap/app.php file
+If you use seperate mysql connection for Passport Authentication so you can do it by chaning env variable. Example:
+```AUTH_DB_CONNECTION=mysql2``` 
+
+Modify bootstrap/app.php file for enabling the package
 ```php
+// Enable Facades
+$app->withFacades();
+
+// Enable Eloquent
+$app->withEloquent();
+
+$app->register(Laravel\Passport\PassportServiceProvider::class);
 $app->register(\Ackosoft\AuthAdapter\AppServiceProvider::class);
-$app->configure('auth');
-```
-Add the following middleware in bootstrap/app.php file
-```php
 $app->routeMiddleware([
      'auth' => \Ackosoft\AuthAdapter\Middleware\AuthMiddleware::class,
  ]);
+
+$app->configure('auth'); //Add this line if not working properly
+```
+
+Make sure your user model uses Passport's HasApiTokens trait, eg.:
+```php
+class User extends Model implements AuthenticatableContract, AuthorizableContract
+{
+    use HasApiTokens, Authenticatable, Authorizable;
+
+    /* rest of the model */
+}
  
+```
+If you use seprate database for authentication so add the connection in User model
+```php
+    protected $connection = 'mysql2'; 
 ```
 
 ### Todos
