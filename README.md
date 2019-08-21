@@ -35,7 +35,9 @@ return [
 
 ```
 If you use seperate mysql connection for Passport Authentication so you can do it by chaning env variable. Example:
-```AUTH_DB_CONNECTION=mysql2``` 
+```php
+AUTH_DB_CONNECTION=mysql2
+``` 
 
 Modify bootstrap/app.php file for enabling the package
 ```php
