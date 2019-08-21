@@ -18,5 +18,5 @@ return [
             'model' => \App\User::class
         ]
     ],
-    'auth_connection'=>'mysql2'
+    'auth_connection'=>env('AUTH_DB_CONNECTION','mysql')
 ];
